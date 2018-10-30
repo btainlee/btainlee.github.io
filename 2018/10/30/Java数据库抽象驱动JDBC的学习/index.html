@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://btainleer.github.io">
-  <title>Btain Lee的博客</title>
+  <title>Java数据库抽象驱动JDBC的学习 | Btain Lee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文: Hexo博客的搭建 Hexo博客主题Yilia的安装配置 Hexo推送到Github的配置 Hexo源文件的备份 遇到的一些问题  Hexo博客的搭建  1.Install Hexo   1234$ brew install npm $ sudo npm install -g hexo-cli$ hexo -v .... 2.Create a project 1234$ hexo ini">
-<meta name="keywords" content="Hexo,Hexo主题,Hexo备份">
+  <meta name="keywords" content="-Java数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Btain Lee的博客">
-<meta property="og:url" content="http://btainleer.github.io/2018/10/04/关于Hexo博客/index.html">
+<meta property="og:title" content="Java数据库抽象驱动JDBC的学习">
+<meta property="og:url" content="http://btainleer.github.io/2018/10/30/Java数据库抽象驱动JDBC的学习/index.html">
 <meta property="og:site_name" content="Btain Lee的博客">
-<meta property="og:description" content="本文: Hexo博客的搭建 Hexo博客主题Yilia的安装配置 Hexo推送到Github的配置 Hexo源文件的备份 遇到的一些问题  Hexo博客的搭建  1.Install Hexo   1234$ brew install npm $ sudo npm install -g hexo-cli$ hexo -v .... 2.Create a project 1234$ hexo ini">
 <meta property="og:locale" content="chinese,english">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/ad931c4bly1fvwexz08ckj20dw09aq6v.jpg">
-<meta property="og:updated_time" content="2018-10-04T11:26:58.621Z">
+<meta property="og:image" content="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=9e9cfb9ed63f8794c7f2407cb3726591/6c224f4a20a44623052ebd449a22720e0cf3d72b.jpg">
+<meta property="og:updated_time" content="2018-10-30T13:45:13.870Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Btain Lee的博客">
-<meta name="twitter:description" content="本文: Hexo博客的搭建 Hexo博客主题Yilia的安装配置 Hexo推送到Github的配置 Hexo源文件的备份 遇到的一些问题  Hexo博客的搭建  1.Install Hexo   1234$ brew install npm $ sudo npm install -g hexo-cli$ hexo -v .... 2.Create a project 1234$ hexo ini">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/ad931c4bly1fvwexz08ckj20dw09aq6v.jpg">
+<meta name="twitter:title" content="Java数据库抽象驱动JDBC的学习">
+<meta name="twitter:image" content="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=9e9cfb9ed63f8794c7f2407cb3726591/6c224f4a20a44623052ebd449a22720e0cf3d72b.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Btain Lee的博客" type="application/atom+xml">
   
@@ -147,60 +144,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-关于Hexo博客" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java数据库抽象驱动JDBC的学习" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java数据库抽象驱动JDBC的学习
+    </h1>
+  
+
+        
+        <a href="/2018/10/30/Java数据库抽象驱动JDBC的学习/" class="archive-article-date">
+  	<time datetime="2018-10-30T13:41:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-30</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://ws1.sinaimg.cn/large/ad931c4bly1fvwexz08ckj20dw09aq6v.jpg" alt="just a pic"></p>
-<h3 id="本文"><a href="#本文" class="headerlink" title="本文:"></a>本文:</h3><ul>
-<li><a href="#hexo">Hexo博客的搭建</a></li>
-<li><a href="#theme">Hexo博客主题Yilia的安装配置</a></li>
-<li><a href="#github">Hexo推送到Github的配置</a></li>
-<li><a href="#bak">Hexo源文件的备份</a></li>
-<li><a href="#question">遇到的一些问题</a></li>
-</ul>
-<h3 id="hexo">Hexo博客的搭建</h3>
-
-<p>1.Install Hexo  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> brew install npm </span><br><span class="line"><span class="meta">$</span> sudo npm install -g hexo-cli</span><br><span class="line"><span class="meta">$</span> hexo -v</span><br><span class="line"> ....</span><br></pre></td></tr></table></figure>
-<p>2.Create a project</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo init btainleer.github.io</span><br><span class="line">  ......</span><br><span class="line"><span class="meta">$</span> cd btainleer.github.io</span><br><span class="line"><span class="meta">$</span> npm install</span><br></pre></td></tr></table></figure>
-<p>3.Run a test.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo server</span><br><span class="line">  Info Hexo is running at http://0.0.0.0:4000/</span><br></pre></td></tr></table></figure>
-<p>4.此时，浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 就能看到 Hello,world 文章了吧。</p>
-<h3 id="theme">Hexo博客主题Yilia的安装配置</h3>  
-
-<p>1.Download hexo theme yilia  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pwd</span><br><span class="line"> xxxx/btainlee.github.io  #在博客根目录</span><br><span class="line"><span class="meta">$</span> git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br><span class="line"><span class="meta">$</span> cd themes/yilia</span><br><span class="line"><span class="meta">$</span> git pull</span><br></pre></td></tr></table></figure>
-<p>2.Active themes yilia  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">btainleer.github.io:_config.yml  </span><br><span class="line">	theme: yilia</span><br></pre></td></tr></table></figure>
-<p>3.Modify themes config file：btainleer.github.io/themes/yilia/_config.yml  </p>
-<p>4.Preview new Blog  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pwd</span><br><span class="line">btainleer.github.io</span><br><span class="line"><span class="meta">$</span> hexo clean</span><br><span class="line">...</span><br><span class="line"><span class="meta">$</span>hexo deploy</span><br><span class="line">...</span><br><span class="line"><span class="meta">$</span>hexo sever</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>5.此时，浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 就能看到 新的主题了吧。  </p>
-<h3 id="github">Hexo推送到Github的配置</h3>  
-
-<p>1.在Github创建一个Repository。命名方式为 username.github.io。如我的用户名是btainleeR,则我的Repository名称为 btainleeR.github.io。</p>
-<p>2.配置Hexo的配置文件（非主题的配置文件）。 </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repo: git@github.com:UserName/UserName.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
-<p>3.安装自动同步插件 </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>pwd</span><br><span class="line">btainlee.github.io</span><br><span class="line"><span class="meta">$</span> npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>4.生成Git秘钥公钥。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ssh_keygen</span><br><span class="line">...</span><br><span class="line">$ cd ~/.ssh</span><br><span class="line">$ vim id_rsa.pub</span><br><span class="line">#复制该文件所有内容，转第五步</span><br></pre></td></tr></table></figure>
-<p>5.将复制的公钥添加到Github账户的SSH keys中。</p>
-<p>​    点击头像&gt;setting&gt;SSH and GPG keys&gt;New SSH key&gt;粘贴   </p>
-<p>6.推动到github  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pwd </span><br><span class="line">btainleer.github.io</span><br><span class="line"><span class="meta">$</span> hexo clean</span><br><span class="line">...</span><br><span class="line"><span class="meta">$</span> hexo deploy</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>7.此时，浏览器访问 <a href="https://Username.github.io就能看到" target="_blank" rel="noopener">https://Username.github.io就能看到</a> 网站了吧。【Username为github用户名】  </p>
-<h3 id="bak">Hexo源文件的备份</h3>  
-
-<p>1.在本地创建 <strong>.gitignore</strong> 文件。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/.deploy_git  #hexo d渲染并上传到github发布出去的</span><br><span class="line">/node_modules  #npm install生成的插件</span><br></pre></td></tr></table></figure>
-<p>2.git在本地创建新的分支，并上传。  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> git init</span><br><span class="line"><span class="meta">$</span> git checkout -b hexo   #创建hexo分支，用来存放源码</span><br><span class="line"><span class="meta">$</span> git add .</span><br><span class="line"><span class="meta">$</span> git commit -m "init"</span><br><span class="line"><span class="meta">$</span> git remote add origin git@github.com:Username/Username.github.io.git</span><br><span class="line"><span class="meta">$</span> git push origin hexo</span><br></pre></td></tr></table></figure>
-<p>3.本地恢复(恢复时使用)  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install -g hexo-cli</span><br><span class="line"><span class="meta">$</span> git clone git@github.com:Username/Username.github.io</span><br><span class="line"><span class="meta">$</span> cd Username.github.io </span><br><span class="line"><span class="meta">$</span> npm install –no-bin-links </span><br><span class="line"><span class="meta">$</span> npm install hexo-deployer-git</span><br></pre></td></tr></table></figure>
+        <p><img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=9e9cfb9ed63f8794c7f2407cb3726591/6c224f4a20a44623052ebd449a22720e0cf3d72b.jpg" alt=""></p>
 
       
 
@@ -214,15 +178,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hexo主题</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hexo备份</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-Java数据库</a>
         		</li>
       		
 		</ul>
@@ -278,7 +234,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://btainleer.github.io/2018/10/04/关于Hexo博客/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://btainleer.github.io/2018/10/30/Java数据库抽象驱动JDBC的学习/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,15 +248,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/10/30/Java数据库抽象驱动JDBC的学习/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java数据库抽象驱动JDBC的学习
-        
-      </div>
-    </a>
   
+    <a href="/2018/10/04/关于Hexo博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
