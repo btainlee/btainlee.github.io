@@ -68,7 +68,7 @@ google_analytics: ''
 favicon: http://oumh6gonh.bkt.clouddn.com/18-10-4/16476369.jpg
 
 #你的头像url
-avatar: http://oumh6gonh.bkt.clouddn.com/18-10-4/16476369.jpg
+avatar: https://avatars0.githubusercontent.com/u/29420613?s=460&v=4
 
 #是否开启分享
 share_jia: true
@@ -120,6 +120,6 @@ smart_menu:
   aboutme: '关于我'
 
 friends:
-  姜正宏的网络博客: http://localhost:4000/
+  姜正宏的网络博客: https://www.xbug.me/
 
 aboutme: 一名（非网络）安全工程学生。

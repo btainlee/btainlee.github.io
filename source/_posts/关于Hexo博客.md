@@ -7,7 +7,7 @@ tags:
 	- Hexo备份
 ---
 
-![just a pic](http://oumh6gonh.bkt.clouddn.com/18-10-4/16476369.jpg)
+![just a pic](https://ws1.sinaimg.cn/large/ad931c4bly1fvwexz08ckj20dw09aq6v.jpg)
 
 
 
@@ -135,6 +135,35 @@ $ hexo deploy
 
 
 <h3 id="bak">Hexo源文件的备份</h3>  
+
+1.在本地创建 __.gitignore__ 文件。
+
+```shell
+/.deploy_git  #hexo d渲染并上传到github发布出去的
+/node_modules  #npm install生成的插件
+```
+
+2.git在本地创建新的分支，并上传。  
+
+```shell 
+$ git init
+$ git checkout -b hexo   #创建hexo分支，用来存放源码
+$ git add .
+$ git commit -m "init"
+$ git remote add origin git@github.com:Username/Username.github.io.git
+$ git push origin hexo
+```
+
+3.本地恢复(恢复时使用)  
+
+```shell
+$ npm install -g hexo-cli
+$ git clone git@github.com:Username/Username.github.io
+$ cd Username.github.io 
+$ npm install –no-bin-links 
+$ npm install hexo-deployer-git
+
+```
 
 
 
