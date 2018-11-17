@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://btainleer.github.io">
   <title>Swoole底层学习 | Btain Lee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Swoole架构图  进程间通讯默认通过Unix Sock管道通讯，也可以通过配置改为系统的消息队列通讯。   Master进程 Manager进程（控制Worker进程的数量） Worker进程  Task进程  Task进程">
+  <meta name="description" content="Swoole架构图  进程间通讯默认通过Unix Sock管道通讯，也可以通过配置改为系统的消息队列。   Master进程 （处理Swoole的核心驱动） Manager进程（管理Worker进程的数量） Worker进程 （处理来自客户端的请求） Task进程 （异步工作进程，处理耗时任务） Reactor线程 (每个线程中，都有epoll的实例。)  Task进程">
 <meta name="keywords" content="php,swoole,网络通讯">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swoole底层学习">
 <meta property="og:url" content="http://btainleer.github.io/2018/11/17/Swoole底层学习/index.html">
 <meta property="og:site_name" content="Btain Lee的博客">
-<meta property="og:description" content="Swoole架构图  进程间通讯默认通过Unix Sock管道通讯，也可以通过配置改为系统的消息队列通讯。   Master进程 Manager进程（控制Worker进程的数量） Worker进程  Task进程  Task进程">
+<meta property="og:description" content="Swoole架构图  进程间通讯默认通过Unix Sock管道通讯，也可以通过配置改为系统的消息队列。   Master进程 （处理Swoole的核心驱动） Manager进程（管理Worker进程的数量） Worker进程 （处理来自客户端的请求） Task进程 （异步工作进程，处理耗时任务） Reactor线程 (每个线程中，都有epoll的实例。)  Task进程">
 <meta property="og:locale" content="chinese,english">
 <meta property="og:image" content="https://raw.githubusercontent.com/swoole/swoole-src/master/mascot.png">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/88370061ly1fxbe0o5xlmj20wr0j00un.jpg">
-<meta property="og:updated_time" content="2018-11-17T13:42:47.259Z">
+<meta property="og:updated_time" content="2018-11-17T14:26:31.792Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swoole底层学习">
-<meta name="twitter:description" content="Swoole架构图  进程间通讯默认通过Unix Sock管道通讯，也可以通过配置改为系统的消息队列通讯。   Master进程 Manager进程（控制Worker进程的数量） Worker进程  Task进程  Task进程">
+<meta name="twitter:description" content="Swoole架构图  进程间通讯默认通过Unix Sock管道通讯，也可以通过配置改为系统的消息队列。   Master进程 （处理Swoole的核心驱动） Manager进程（管理Worker进程的数量） Worker进程 （处理来自客户端的请求） Task进程 （异步工作进程，处理耗时任务） Reactor线程 (每个线程中，都有epoll的实例。)  Task进程">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/swoole/swoole-src/master/mascot.png">
   
     <link rel="alternative" href="/atom.xml" title="Btain Lee的博客" type="application/atom+xml">
@@ -171,13 +171,14 @@
         <p><img src="https://raw.githubusercontent.com/swoole/swoole-src/master/mascot.png" alt=""></p>
 <h3 id="Swoole架构图"><a href="#Swoole架构图" class="headerlink" title="Swoole架构图"></a>Swoole架构图</h3><p><img src="https://ws1.sinaimg.cn/large/88370061ly1fxbe0o5xlmj20wr0j00un.jpg" alt="swoole架构图"></p>
 <blockquote>
-<p>进程间通讯默认通过Unix Sock管道通讯，也可以通过配置改为系统的消息队列通讯。</p>
+<p>进程间通讯默认通过Unix Sock管道通讯，也可以通过配置改为系统的消息队列。</p>
 </blockquote>
 <ul>
-<li>Master进程</li>
-<li>Manager进程（控制Worker进程的数量）</li>
-<li>Worker进程 </li>
-<li>Task进程</li>
+<li>Master进程 （处理Swoole的核心驱动）</li>
+<li>Manager进程（管理Worker进程的数量）</li>
+<li>Worker进程 （处理来自客户端的请求）</li>
+<li>Task进程 （异步工作进程，处理耗时任务）</li>
+<li>Reactor线程 (每个线程中，都有epoll的实例。)</li>
 </ul>
 <h3 id="Task进程"><a href="#Task进程" class="headerlink" title="Task进程"></a>Task进程</h3>
       
