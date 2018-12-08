@@ -166,8 +166,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="WebSocket-介绍"><a href="#WebSocket-介绍" class="headerlink" title="WebSocket 介绍"></a>WebSocket 介绍</h3><p>因为HTTP协议的工作模式是：客户端请求-&gt;服务器相应模式。也就是只有我们向服务器请求数据，服务器才会返回数据给客户端;服务器并不会主动发送数据到客户端。</p>
-
+        <h3 id="WebSocket-介绍"><a href="#WebSocket-介绍" class="headerlink" title="WebSocket 介绍"></a>WebSocket 介绍</h3><p>HTTP协议的工作模式是：客户端请求-&gt;服务器相应。服务器不会主动推送数据到客户端(浏览器),为了实现客户端的数据和服务端的数据实时更新同步，需要使用 <code>javascript setinterval() + ajax</code> 来定时向服务器请求数据。但是这种请求方式会对服务器带来很大的负载，TCP握手的开销远超过数据传输的开销。Websocket是一种长连接通讯协议，可以只TCP握手一次而提供全双工通讯，首次握手后的通讯可以直接传输数据，可以减轻服务端的负载。</p>
+<h3 id="由抓包开始分析"><a href="#由抓包开始分析" class="headerlink" title="由抓包开始分析"></a>由抓包开始分析</h3><blockquote>
+<p>此处服务器地址为167.179.91.7:9501,用swoole开发。本地地址为192.168.42.202。</p>
+</blockquote>
+<p><img src="https://ws1.sinaimg.cn/large/88370061ly1fxz7fd0h2qj21hc0u0dvn.jpg" alt=""></p>
+<p>通过抓包分析和猜测(水平有限)Websocket通讯过程：</p>
+<ul>
+<li>通过TCP三次握手建立连接</li>
+<li>浏览器向服务器websocket监听端口9501发送HTTP包请求更换换协议</li>
+<li>服务器测试浏览器websocket通讯端口是否可达(再次握手)</li>
+<li>服务器通过HTTP协议响应websocket协议变换成功</li>
+<li>浏览器测试服务器websocket通讯端口是否可达（再次握手）</li>
+<li>建立连接</li>
+<li>浏览器发送一个数据包</li>
+<li>服务器响应一个校验包</li>
+<li>服务器推送一个数据包</li>
+<li>浏览器响应一个校验包</li>
+<li>…</li>
+<li>浏览器发送心跳包保持在线</li>
+<li>服务器响应</li>
+</ul>
+<blockquote>
+<p>请求升级包分析（发送一个key）</p>
+</blockquote>
+<p><img src="https://ws1.sinaimg.cn/large/88370061ly1fxz808xrgvj213j09077p.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/88370061ly1fxz85rt05sj20ix02cq35.jpg" alt=""></p>
+<blockquote>
+<p>升级响应包</p>
+</blockquote>
+<p><img src="https://ws1.sinaimg.cn/large/88370061ly1fxz84qqkpdj213b096go6.jpg" alt=""></p>
+<h3 id="Javascirpt的客户端实现"><a href="#Javascirpt的客户端实现" class="headerlink" title="Javascirpt的客户端实现"></a>Javascirpt的客户端实现</h3><h3 id="Swoole的服务端实现"><a href="#Swoole的服务端实现" class="headerlink" title="Swoole的服务端实现"></a>Swoole的服务端实现</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
       
 
       
@@ -525,6 +554,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -534,14 +571,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hexo备份</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
             
             <div class="clearfix"></div>
