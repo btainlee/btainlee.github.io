@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://btainleer.github.io">
-  <title>Archives: 2018 | Btain Lee的博客</title>
+  <title>PHP自定义可迭代数据类 | Btain Lee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="（非网络）安全工程的计算机爱好者一名">
-<meta name="keywords" content="“js,php,java,开发者,Developer, Programer&quot;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Btain Lee的博客">
-<meta property="og:url" content="http://btainleer.github.io/archives/2018/index.html">
+  <meta name="description" content="接上篇Java的迭代数据集合的实现，意外发现PHP也有迭代器的自定义实现。 文档参考： http://php.net/manual/zh/class.iterator.php 实现步骤  使用 Iterator 接口 实现 Iterator接口的个方法 public function valid() {return isset($value);} public function current()">
+<meta name="keywords" content="PHP,Iterator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP自定义可迭代数据类">
+<meta property="og:url" content="http://btainleer.github.io/2018/12/18/PHP自定义可迭代数据类/index.html">
 <meta property="og:site_name" content="Btain Lee的博客">
-<meta property="og:description" content="（非网络）安全工程的计算机爱好者一名">
+<meta property="og:description" content="接上篇Java的迭代数据集合的实现，意外发现PHP也有迭代器的自定义实现。 文档参考： http://php.net/manual/zh/class.iterator.php 实现步骤  使用 Iterator 接口 实现 Iterator接口的个方法 public function valid() {return isset($value);} public function current()">
 <meta property="og:locale" content="chinese,english">
+<meta property="og:updated_time" content="2018-12-18T14:49:23.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Btain Lee的博客">
-<meta name="twitter:description" content="（非网络）安全工程的计算机爱好者一名">
+<meta name="twitter:title" content="PHP自定义可迭代数据类">
+<meta name="twitter:description" content="接上篇Java的迭代数据集合的实现，意外发现PHP也有迭代器的自定义实现。 文档参考： http://php.net/manual/zh/class.iterator.php 实现步骤  使用 Iterator 接口 实现 Iterator接口的个方法 public function valid() {return isset($value);} public function current()">
   
     <link rel="alternative" href="/atom.xml" title="Btain Lee的博客" type="application/atom+xml">
   
@@ -144,36 +145,51 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-PHP自定义可迭代数据类" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/18/PHP自定义可迭代数据类/" class="archive-article-date">
-  	<time datetime="2018-12-18T14:21:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/18/PHP自定义可迭代数据类/">PHP自定义可迭代数据类</a>
+    <h1 class="article-title" itemprop="name">
+      PHP自定义可迭代数据类
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/12/18/PHP自定义可迭代数据类/" class="archive-article-date">
+  	<time datetime="2018-12-18T14:21:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>接上篇Java的迭代数据集合的实现，意外发现PHP也有迭代器的自定义实现。</p>
+<p>文档参考： <a href="http://php.net/manual/zh/class.iterator.php" target="_blank" rel="noopener">http://php.net/manual/zh/class.iterator.php</a></p>
+<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><blockquote>
+<ul>
+<li>使用 Iterator 接口</li>
+<li>实现 Iterator接口的个方法</li>
+<li>public function valid() {return isset($value);}</li>
+<li>public function current(){return $value;}</li>
+<li>public function key() {return $key;}</li>
+<li>public function next(){}    //move to next node</li>
+<li>public function rewind() {}  //reset curr</li>
+</ul>
+</blockquote>
+<p>foreach() 的调用顺序是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>($obj-&gt;valid()) &#123;</span><br><span class="line">        $value = $obj-&gt;currnet();</span><br><span class="line">        $key = $obj-&gt;key();</span><br><span class="line">        $obj-&gt;next();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="同上一Java篇一样，实现一个简单的单向链表"><a href="#同上一Java篇一样，实现一个简单的单向链表" class="headerlink" title="同上一Java篇一样，实现一个简单的单向链表"></a>同上一Java篇一样，实现一个简单的单向链表</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $curr;  <span class="comment">//迭代数据游标</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $length = <span class="number">0</span>;  <span class="comment">//本例中无作用，可作为isEmpty()的判断 条件</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $firstNode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $cur;  <span class="comment">//构建链表游标</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     *  构建一个首节点，初始化构建链表游标</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;position = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;firstNode = <span class="keyword">new</span> Node(<span class="string">"firstNode"</span>);    <span class="comment">//首节点</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;cur = <span class="keyword">$this</span>-&gt;firstNode;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;curr = <span class="keyword">$this</span>-&gt;firstNode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 为链表增加一个节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">push</span><span class="params">($newValue)</span> </span>&#123;</span><br><span class="line">        $newNode = <span class="keyword">new</span> Node($newValue);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;cur-&gt;next = $newNode;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;cur = $newNode;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;length++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 接口方法，重置迭代数据游标</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rewind</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;curr = <span class="keyword">$this</span>-&gt;firstNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 接口方法，返回当前迭代数据的值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">current</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;curr-&gt;value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 接口方法，返回当前迭代的键</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">key</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;curr-&gt;value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 接口方法，将迭代数据游标向后移动一位</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;curr = <span class="keyword">$this</span>-&gt;curr-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 接口方法，判断当前的数据节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">valid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        var_dump(<span class="keyword">__METHOD__</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;curr-&gt;value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//链表节点类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $value;</span><br><span class="line">    <span class="keyword">public</span>  $next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;value = $value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Test</span></span><br><span class="line">$LinkedList = <span class="keyword">new</span> myIterator;</span><br><span class="line">$LinkedList-&gt;push(<span class="string">"Hello"</span>);</span><br><span class="line">$LinkedList-&gt;push(<span class="string">"World"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>($LinkedList <span class="keyword">as</span> $key=&gt;$value) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $value . PHP_EOL;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="do-What"><a href="#do-What" class="headerlink" title="do What"></a>do What</h4><p>是的，这些都是为了算法准备的。算法是在数据结构之上的，而链式结构是数据结构的基础！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,187 +205,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://btainleer.github.io/2018/12/18/PHP自定义可迭代数据类/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/17/Java自定义可迭代-Iterable-数据集合/" class="archive-article-date">
-  	<time datetime="2018-12-17T02:29:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/17/Java自定义可迭代-Iterable-数据集合/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java自定义可迭代(Iterable)数据集合</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/17/Java自定义可迭代-Iterable-数据集合/">Java自定义可迭代(Iterable)数据集合</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Colleaction</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/07/About-WebSocket/" class="archive-article-date">
-  	<time datetime="2018-12-07T13:32:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/07/About-WebSocket/">About WebSocket(js+php swoole实现)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/MySQL-command-list/" class="archive-article-date">
-  	<time datetime="2018-11-05T13:49:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/MySQL-command-list/">MySQL command list</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/04/关于Hexo博客/" class="archive-article-date">
-  	<time datetime="2018-10-04T08:01:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/关于Hexo博客/">关于Hexo博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hexo主题</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hexo备份</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -392,8 +327,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
