@@ -174,7 +174,17 @@
 <li><a href="#coding">用Python训练我的第一个机器学习模型—-简单线性回归模型</a></li>
 </ul>
 <p><img src="https://ws1.sinaimg.cn/large/88370061ly1g0uh6rarmzj20m80goaah.jpg" alt=""></p>
-<h4 id="简单线性回归-Simple-Linear-Regression-数学原理"><a href="#简单线性回归-Simple-Linear-Regression-数学原理" class="headerlink" title="简单线性回归(Simple Linear Regression) 数学原理"></a><a name="math">简单线性回归(Simple Linear Regression) 数学原理</a></h4><p>​    简单线性回归 是 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">​	拟合的最终目标就是让每一个坐标点到 拟合出的直线的垂直距离平方和最小。即 ```Sum(Y - Yn)^2 -&gt; min```.  </span><br><span class="line"></span><br><span class="line">当所有的训练数据都被使用，为了保证满足这个条件，就能得出相应的 ```a``` 和 ```b``` 的值，也就最终确定了回归模型。  </span><br><span class="line"></span><br><span class="line">上文中提到的将数据集分为训练集和测试集。其中训练集用于拟合回归模型（寻找合适的a、b值),测试集用于测试回归模型的准确度。通常的，训练集和测试集的比例为  8:2.  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">####  &lt;a name=&quot;coding&quot;&gt;用Python训练我的第一个机器学习模型----简单线性回归模型&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&gt; 训练数据集下载地址 : &lt;a href=&quot;https://www.superdatascience.com/pages/%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86&quot;&gt;https://www.superdatascience.com&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1. 首先，导入数据集并将自变量(dependent variable)和因变量（independent variable)分为两个矩阵： X矩阵和Y矩阵。  </span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">import pandas as pd</span><br><span class="line">dataset = pd.read_csv(&apos;Salary_Data.csv&apos;)</span><br><span class="line"></span><br><span class="line">X = dataset.iloc[:, :-1].values</span><br><span class="line">Y = dataset.iloc0[:, 1].values</span><br></pre></td></tr></table></figure></p>
+<h4 id="简单线性回归-Simple-Linear-Regression-数学原理"><a href="#简单线性回归-Simple-Linear-Regression-数学原理" class="headerlink" title="简单线性回归(Simple Linear Regression) 数学原理"></a><a name="math">简单线性回归(Simple Linear Regression) 数学原理</a></h4><p>​    简单线性回归 是   <b>Y = aX + b </b>  这样的模型。显然，该模型对于训练集的要求就是 只有一个自变量（X）和一个因变量（Y），也就是每一行训练数据只有两列。  </p>
+<p>​    拟合的最终目标就是让每一个坐标点到 拟合出的直线的垂直距离平方和最小。即 <b>Sum(Y - Yn)^2 -&gt; min</b>.  </p>
+<p>当所有的训练数据都被使用，为了保证满足这个条件，就能得出相应的 <strong>a</strong> 和 <b>b</b> 的值，也就最终确定了回归模型。  </p>
+<p>上文中提到的将数据集分为训练集和测试集。其中训练集用于拟合回归模型（寻找合适的a、b值),测试集用于测试回归模型的准确度。通常的，训练集和测试集的比例为  8:2.  </p>
+<h4 id="用Python训练我的第一个机器学习模型—-简单线性回归模型"><a href="#用Python训练我的第一个机器学习模型—-简单线性回归模型" class="headerlink" title="用Python训练我的第一个机器学习模型—-简单线性回归模型"></a><a name="coding">用Python训练我的第一个机器学习模型—-简单线性回归模型</a></h4><blockquote>
+<p>训练数据集下载地址 : <a href="https://www.superdatascience.com/pages/%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86" target="_blank" rel="noopener">https://www.superdatascience.com</a></p>
+</blockquote>
+<ol>
+<li>首先，导入数据集并将自变量(dependent variable)和因变量（independent variable)分为两个矩阵： X矩阵和Y矩阵。  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">dataset = pd.read_csv(<span class="string">'Salary_Data.csv'</span>)</span><br><span class="line"></span><br><span class="line">X = dataset.iloc[:, :<span class="number">-1</span>].values</span><br><span class="line">Y = dataset.iloc0[:, <span class="number">1</span>].values</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li><p>将 X矩阵 和 Y矩阵再分：训练集和测试集。数据集被分为 训练集自变量(X_train)、 训练集因变量(Y_train)、测试集自变量(X_test)和测试集因变量(T_test)。  </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = <span class="number">1</span>/<span class="number">3</span>, rangdom_state = <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
@@ -1126,14 +1136,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Iterator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -1143,6 +1145,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hexo备份</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Iterator</a>
               </li>
              
               <li class="article-tag-list-item">
