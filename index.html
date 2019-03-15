@@ -146,6 +146,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-机器学习-003-之多元线性回归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/07/机器学习-003-之多元线性回归/">机器学习(003)之多元线性回归</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/07/机器学习-003-之多元线性回归/" class="archive-article-date">
+  	<time datetime="2019-03-07T13:26:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。  </p>
+</blockquote>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+<li><p><a href="#what">多元线性回归再解释</a></p>
+</li>
+<li><p><a href="#five">应用多元线性回归的五个前提</a>  </p>
+</li>
+<li><a href="#dummy">多元线性回归中的分类数据处理 </a></li>
+</ul>
+<h4 id="多元线性回归再解释"><a href="#多元线性回归再解释" class="headerlink" title="多元线性回归再解释"></a><a name="what">多元线性回归再解释</a></h4><p><img src="https://ws1.sinaimg.cn/large/88370061ly1g13ucauwvfj20ti05fjte.jpg" alt="多元线性回归"></p>
+<p>上图中，研发经费(R&amp;D Spend)、管理费用(Administration)、市场开销(Marketing Spend)和所在城市(State)都是自变量，都影响着最终的利润(Profile)。这种有数个自变量和因变量的情况不能再使用简单线性回归模型进行拟合，需要使用新的模型:多元线性回归模型(Multiple Linear Regression)进行拟合。多元线性回归模型类似于: Y = b = b<sub>0</sub> + b<sub>1</sub>X<sub>1</sub> + b<sub>2</sub>X<sub>2</sub> + … + b<sub>n</sub>X<sub>n</sub> 。拟合的过程主要是通过不同组的自变量矩阵([X<sub>1</sub>  &nbsp;X<sub>2</sub> &nbsp; … &nbsp; X<sub>n</sub>])和 变量结果Y 来寻找最佳的 b矩阵([b<sub>0</sub> &nbsp; b<sub>1</sub> &nbsp; b<sub>2</sub> … &nbsp; b<sub>n</sub>])。</p>
+<h4 id="应用多元线性回归的五个前提"><a href="#应用多元线性回归的五个前提" class="headerlink" title="应用多元线性回归的五个前提"></a><a name="five">应用多元线性回归的五个前提</a></h4><ol>
+<li>线性数据(Linearity)</li>
+<li>同方差性(Homoscedasticity)</li>
+<li>多元正态分布(Multivariate normality)</li>
+<li>误差成立(Independence of error)</li>
+<li>无多重共线性(Lack of Multicolinearity): 这点要求是 所有的自变量相互之间无线性关系。</li>
+</ol>
+<h4 id="多元线性回归中的分类数据处理"><a href="#多元线性回归中的分类数据处理" class="headerlink" title="多元线性回归中的分类数据处理"></a>多元线性回归中的分类数据处理</h4><p>在多元线性回归中，对分类数据采用虚拟变量(dummy)的方法处理。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/07/机器学习-003-之多元线性回归/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-机器学习-002-之简单线性回归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -202,7 +299,7 @@
 </li>
 </ol>
 <p><img src="https://ws1.sinaimg.cn/large/88370061ly1g0ujjhuo6jj20bf07qwel.jpg" alt=""></p>
-<p>图中，红色点为数据测试集中的点。而蓝色直线为拟合好的回归模型。可以利用蓝色线上的点为未知的数据来提供一个合理的参考。</p>
+<p>图中，红色点为数据测试集中的点。而蓝色直线为拟合好的回归模型。可以利用蓝色线上的点为未知的数据预测来提供一个合理的参考。</p>
 
       
 
@@ -1112,15 +1209,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Comparable</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1136,15 +1233,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hexo主题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hexo备份</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1156,11 +1249,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color2">Hexo主题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hexo备份</a>
               </li>
             
             <div class="clearfix"></div>
