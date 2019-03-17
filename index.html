@@ -271,6 +271,7 @@
 </table>
 <p>如果是三个分类，那么显然知道其中两个的值，就一定能知道第三个位置的值是<strong>0</strong>还是<strong>1</strong>.</p>
 <p><b>为了满足应用线性回归的五个前提的无多重共线性，当分类变量有N个维度，要省略一个维度来避免维度溢出。</b>  </p>
+<p>另外，值得注意的是：多元线性回归的模型类似于<strong>Y = b<sub>0</sub> + b<sub>1</sub><em>X<sub>1</sub> + … + b<sub>n</sub></em>X<sub>n</sub></strong> . 多组自变量 [x1, x2, .. , xn]构成的自变量矩阵只能得到[b1, b2, … , bn].为了得到 <strong>b0</strong>.只能假设 X<sub>0</sub> 为常数1.构成新的自变量矩阵[1, x1, x2, …, xn].这样处理之后就能够拟合出b0的值。</p>
 <h4 id="如何建立一个多元线性回归模型"><a href="#如何建立一个多元线性回归模型" class="headerlink" title="如何建立一个多元线性回归模型"></a><a name="how">如何建立一个多元线性回归模型</a></h4><blockquote>
 <p>建立一个多元线性回归模型有五种方式，下面来介绍每一个线性回归模型。  </p>
 </blockquote>
@@ -286,12 +287,21 @@
 <p>所以，反向淘汰可以这么理解：首先将所有的自变量加入到模型中，在通过P-value寻找出所有对结果影响较小的元素并删除，以此来提高回归预测模型对数据预测的准确性。</p>
 </li>
 <li><p>Forward Selection(正向选择)</p>
+<p>​    Step1: select a significance level to enter the model(SL=0.05).  </p>
+<p>​    Step2: Fit all simple regression models y-Xn.Select the one with the lowest p-value.  </p>
+<p>​    Step3: Keep this variable and fit all possiable models with one extra predictor aded to the  one you have.  </p>
+<p>​    Step4: Consider the predictor with the latest p-value.If P &lt; SL, go  to Step3. Otherwise go to FIN.</p>
 </li>
-</ol>
-<ol start="4">
-<li><p>Bidirection Elimination</p>
+<li><p>Bidirection Elimination  (双向淘汰)</p>
+<p>​    Step1: Select a significance level to enter and to stay in the model.(SLENTER = 0.05, SLSTAY = 0.05).  </p>
+<p>​    Step2: Perform the next step of Forward Selection.(new Value must have: P&lt;SLENTER to enter)</p>
+<p>​    Step3: Perform All Step of Backward Elimination(old value must P &lt; SLSTAY)</p>
+<p>​    Step4: No new variable can enter and no old variable can exit.</p>
 </li>
-<li><p>Score Comparison</p>
+<li><p>Score Comparison(信息量比较)  </p>
+<p>​    Step1: 选择一个打分方式</p>
+<p>​    Setp2: 对所有可能模型进行打分。1-N个数有2^N - 1个模型  </p>
+<p>​    Step3: 选择打分最高的模型。</p>
 </li>
 </ol>
 
@@ -1325,11 +1335,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Colleaction</a>
+                <a href="javascript:void(0)" class="js-tag color1">Comparable</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Comparable</a>
+                <a href="javascript:void(0)" class="js-tag color2">Colleaction</a>
               </li>
              
               <li class="article-tag-list-item">
