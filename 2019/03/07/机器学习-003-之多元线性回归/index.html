@@ -8,19 +8,21 @@
   <link rel="dns-prefetch" href="http://btainleer.github.io">
   <title>机器学习(003)之多元线性回归 | Btain Lee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理   多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市场开销(Marketing Spe">
+  <meta name="description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理    如何建立一个多元线性回归模型  多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市">
 <meta name="keywords" content="机器学习,数学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习(003)之多元线性回归">
 <meta property="og:url" content="http://btainleer.github.io/2019/03/07/机器学习-003-之多元线性回归/index.html">
 <meta property="og:site_name" content="Btain Lee的博客">
-<meta property="og:description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理   多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市场开销(Marketing Spe">
+<meta property="og:description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理    如何建立一个多元线性回归模型  多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市">
 <meta property="og:locale" content="chinese,english">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/88370061ly1g13ucauwvfj20ti05fjte.jpg">
-<meta property="og:updated_time" content="2019-03-15T14:45:14.946Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/88370061ly1g1635wmqzuj20ud0a6abb.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/88370061gy1g1647cswm0j21hc0qt41k.jpg">
+<meta property="og:updated_time" content="2019-03-17T13:41:24.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习(003)之多元线性回归">
-<meta name="twitter:description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理   多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市场开销(Marketing Spe">
+<meta name="twitter:description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理    如何建立一个多元线性回归模型  多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/88370061ly1g13ucauwvfj20ti05fjte.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Btain Lee的博客" type="application/atom+xml">
@@ -175,7 +177,8 @@
 </li>
 <li><p><a href="#five">应用多元线性回归的五个前提</a>  </p>
 </li>
-<li><a href="#dummy">多元线性回归中的分类数据处理 </a></li>
+<li><a href="#dummy">多元线性回归中的分类数据处理 </a>  </li>
+<li><a href="#how">如何建立一个多元线性回归模型</a></li>
 </ul>
 <h4 id="多元线性回归再解释"><a href="#多元线性回归再解释" class="headerlink" title="多元线性回归再解释"></a><a name="what">多元线性回归再解释</a></h4><p><img src="https://ws1.sinaimg.cn/large/88370061ly1g13ucauwvfj20ti05fjte.jpg" alt="多元线性回归"></p>
 <p>上图中，研发经费(R&amp;D Spend)、管理费用(Administration)、市场开销(Marketing Spend)和所在城市(State)都是自变量，都影响着最终的利润(Profile)。这种有数个自变量和因变量的情况不能再使用简单线性回归模型进行拟合，需要使用新的模型:多元线性回归模型(Multiple Linear Regression)进行拟合。多元线性回归模型类似于: Y = b = b<sub>0</sub> + b<sub>1</sub>X<sub>1</sub> + b<sub>2</sub>X<sub>2</sub> + … + b<sub>n</sub>X<sub>n</sub> 。拟合的过程主要是通过不同组的自变量矩阵([X<sub>1</sub>  &nbsp;X<sub>2</sub> &nbsp; … &nbsp; X<sub>n</sub>])和 变量结果Y 来寻找最佳的 b矩阵([b<sub>0</sub> &nbsp; b<sub>1</sub> &nbsp; b<sub>2</sub> … &nbsp; b<sub>n</sub>])。</p>
@@ -186,7 +189,114 @@
 <li>误差成立(Independence of error)</li>
 <li>无多重共线性(Lack of Multicolinearity): 这点要求是 所有的自变量相互之间无线性关系。</li>
 </ol>
-<h4 id="多元线性回归中的分类数据处理"><a href="#多元线性回归中的分类数据处理" class="headerlink" title="多元线性回归中的分类数据处理"></a>多元线性回归中的分类数据处理</h4><p>在多元线性回归中，对分类数据采用虚拟变量(dummy)的方法处理。</p>
+<h4 id="多元线性回归中的分类数据处理"><a href="#多元线性回归中的分类数据处理" class="headerlink" title="多元线性回归中的分类数据处理"></a><a name="dummp">多元线性回归中的分类数据处理</a></h4><p>在多元线性回归中，对分类数据采用虚拟变量(dummy)的方法处理。</p>
+<p>但是在多元线性回归中，虚拟变量处理分类数据有一个陷阱。假设有数据:   </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Salary</th>
+<th style="text-align:center">City</th>
+<th style="text-align:center">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">New York</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:center">HK</td>
+<td style="text-align:center">False</td>
+</tr>
+</tbody>
+</table>
+<p>对于分类变量<strong>City</strong>,一般使用虚拟变量编码。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">New York</th>
+<th style="text-align:center">HK</th>
+<th style="text-align:center">Encode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">New York</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1 0</td>
+</tr>
+<tr>
+<td style="text-align:center">HK</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0 1</td>
+</tr>
+</tbody>
+</table>
+<p>如表所示，<strong>New York</strong>被编码成 <b>1 0</b>.而<b>HK</b>被编码成<strong>0 1</strong>.按照这种编码方式,每个城市都会有唯一的编码。这本来没有什么问题，但是<strong>0</strong>和<strong>1</strong> 明显有相关性：只要某一个位置为1，则其他位一定是0.  如果有三个分类呢？</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">New York</th>
+<th style="text-align:center">HK</th>
+<th style="text-align:center">JP</th>
+<th style="text-align:center">Encode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">New York</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:center">HK</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">010</td>
+</tr>
+<tr>
+<td style="text-align:center">JP</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">001</td>
+</tr>
+</tbody>
+</table>
+<p>如果是三个分类，那么显然知道其中两个的值，就一定能知道第三个位置的值是<strong>0</strong>还是<strong>1</strong>.</p>
+<p><b>为了满足应用线性回归的五个前提的无多重共线性，当分类变量有N个维度，要省略一个维度来避免维度溢出。</b>  </p>
+<h4 id="如何建立一个多元线性回归模型"><a href="#如何建立一个多元线性回归模型" class="headerlink" title="如何建立一个多元线性回归模型"></a><a name="how">如何建立一个多元线性回归模型</a></h4><blockquote>
+<p>建立一个多元线性回归模型有五种方式，下面来介绍每一个线性回归模型。  </p>
+</blockquote>
+<ol>
+<li><p>All in </p>
+<p>All in 就是保留所有的自变量来拟合回归模型，但是一般很少用这种拟合方式。除非某种特殊场合不得不使用，或者用于 <b>Backward Elimation</b>的准备工作。</p>
+<p><img src="https://ws1.sinaimg.cn/large/88370061ly1g1635wmqzuj20ud0a6abb.jpg" alt=""></p>
+</li>
+<li><p>Backward Elimation(反向淘汰)</p>
+<p><img src="https://ws1.sinaimg.cn/large/88370061gy1g1647cswm0j21hc0qt41k.jpg" alt=""></p>
+<p>反向淘汰是逐步回归的一种方式。首先将所有的自变量以<strong>All in</strong>的方式加在模型中，定义一个门槛值(SL=0.05)。然后计算出每一个元素的P-value。找出最大P-value的元素，如果这个元素的P-value &gt; SL.那么就删除掉这个元素，再回到找最大P-value的元素的步骤。指导最大的P-value &lt; SL.此时，这个多元线性回归模型就拟合好了。</p>
+<p>关于P-value: P-value是统计学中自变量对因变量影响程度的量，P-value越大，表示这个值对因变量的影响越小。  </p>
+<p>所以，反向淘汰可以这么理解：首先将所有的自变量加入到模型中，在通过P-value寻找出所有对结果影响较小的元素并删除，以此来提高回归预测模型对数据预测的准确性。</p>
+</li>
+<li><p>Forward Selection(正向选择)</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>Bidirection Elimination</p>
+</li>
+<li><p>Score Comparison</p>
+</li>
+</ol>
 
       
 
@@ -402,27 +512,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Comparable</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Colleaction</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -434,11 +524,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Iterator</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Colleaction</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Comparable</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -451,6 +553,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Hexo备份</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Iterator</a>
               </li>
             
             <div class="clearfix"></div>
