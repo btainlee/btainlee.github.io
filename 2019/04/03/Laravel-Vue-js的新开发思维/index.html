@@ -6,24 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://btainleer.github.io">
-  <title>机器学习(003)之多元线性回归 | Btain Lee的博客</title>
+  <title>Laravel+Vue.js的新开发思维 | Btain Lee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理    如何建立一个多元线性回归模型  多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市">
-<meta name="keywords" content="机器学习,数学">
+  <meta name="description" content="是的，已经在 thinkphp3.2 + bootstrap + jquery.js 这套开发方案里挣扎好久了。由于TP3.2是我接触的第一个开发框架，所以即使到后来，我转向Laravel开发的时候，依旧用的是ThinkPHP3.2里面的那一套： PHP模板引擎渲染页面，jquery与后端进行ajax操作并且操作Dom来更新数据。 Jquery的使用最让我头疼的就是每当表格需要更新数据的时候，需">
+<meta name="keywords" content="Laravel,Vue.js,Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习(003)之多元线性回归">
-<meta property="og:url" content="http://btainleer.github.io/2019/03/07/机器学习-003-之多元线性回归/index.html">
+<meta property="og:title" content="Laravel+Vue.js的新开发思维">
+<meta property="og:url" content="http://btainleer.github.io/2019/04/03/Laravel-Vue-js的新开发思维/index.html">
 <meta property="og:site_name" content="Btain Lee的博客">
-<meta property="og:description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理    如何建立一个多元线性回归模型  多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市">
+<meta property="og:description" content="是的，已经在 thinkphp3.2 + bootstrap + jquery.js 这套开发方案里挣扎好久了。由于TP3.2是我接触的第一个开发框架，所以即使到后来，我转向Laravel开发的时候，依旧用的是ThinkPHP3.2里面的那一套： PHP模板引擎渲染页面，jquery与后端进行ajax操作并且操作Dom来更新数据。 Jquery的使用最让我头疼的就是每当表格需要更新数据的时候，需">
 <meta property="og:locale" content="chinese,english">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/88370061ly1g13ucauwvfj20ti05fjte.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/88370061ly1g1635wmqzuj20ud0a6abb.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/88370061gy1g1647cswm0j21hc0qt41k.jpg">
-<meta property="og:updated_time" content="2019-03-17T14:29:54.201Z">
+<meta property="og:updated_time" content="2019-04-03T13:09:56.089Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习(003)之多元线性回归">
-<meta name="twitter:description" content="多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。    目录 多元线性回归再解释  应用多元线性回归的五个前提    多元线性回归中的分类数据处理    如何建立一个多元线性回归模型  多元线性回归再解释 上图中，研发经费(R&amp;amp;D Spend)、管理费用(Administration)、市">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/88370061ly1g13ucauwvfj20ti05fjte.jpg">
+<meta name="twitter:title" content="Laravel+Vue.js的新开发思维">
+<meta name="twitter:description" content="是的，已经在 thinkphp3.2 + bootstrap + jquery.js 这套开发方案里挣扎好久了。由于TP3.2是我接触的第一个开发框架，所以即使到后来，我转向Laravel开发的时候，依旧用的是ThinkPHP3.2里面的那一套： PHP模板引擎渲染页面，jquery与后端进行ajax操作并且操作Dom来更新数据。 Jquery的使用最让我头疼的就是每当表格需要更新数据的时候，需">
   
     <link rel="alternative" href="/atom.xml" title="Btain Lee的博客" type="application/atom+xml">
   
@@ -149,20 +145,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-机器学习-003-之多元线性回归" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Laravel-Vue-js的新开发思维" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      机器学习(003)之多元线性回归
+      Laravel+Vue.js的新开发思维
     </h1>
   
 
         
-        <a href="/2019/03/07/机器学习-003-之多元线性回归/" class="archive-article-date">
-  	<time datetime="2019-03-07T13:26:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-07</time>
+        <a href="/2019/04/03/Laravel-Vue-js的新开发思维/" class="archive-article-date">
+  	<time datetime="2019-04-03T12:55:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-03</time>
 </a>
         
       </header>
@@ -170,143 +166,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>多元线性回归(Multiple Linear Regression)主要研究一个因变量与多个自变量之间的关系。与简单线性回归的区别就是有多个自变量。  </p>
+<p>是的，已经在 thinkphp3.2 + bootstrap + jquery.js 这套开发方案里挣扎好久了。由于TP3.2是我接触的第一个开发框架，所以即使到后来，我转向Laravel开发的时候，依旧用的是ThinkPHP3.2里面的那一套： PHP模板引擎渲染页面，jquery与后端进行ajax操作并且操作Dom来更新数据。 Jquery的使用最让我头疼的就是每当表格需要更新数据的时候，需要用js循环把html标签和数据拼接起来，这曾让我一度崩溃到在后台单独留出一个控制器，在后端直接渲染，通过ajax拿到后台渲染好的代码。至于动画，那就更是噩梦了。  </p>
+<p>后来都听说Vue不错，可是看书看不太明白，看视频的话，看似短小精悍的视频听着确实爽快，可是这种快节奏是建立在一上手就懵逼的代价之上的。培训班视频确实节奏过慢，实在是很难找到合适的。</p>
+<p>后来还是断断续续的学了点laravel和Vue。可是怎么都想不明白这两个怎么结合起来。</p>
+<p>当你走出舒适区，那就改变就开始了。</p>
+<p>近来在Youtube上发现了一个基于Vue+laravel的视频教程，虽然是印度英语很难听懂，但是讲课的节奏真的是太适合我了。有时候发现1.5倍速也能听得懂，直到有一次我静音才发现原来我是看代码看得懂，并不是听得懂。</p>
+<p>确实，这个技术栈开发效率太高了。本文记录下，那些新的开发思路。</p>
 </blockquote>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
-<li><p><a href="#what">多元线性回归再解释</a></p>
-</li>
-<li><p><a href="#five">应用多元线性回归的五个前提</a>  </p>
-</li>
-<li><a href="#dummy">多元线性回归中的分类数据处理 </a>  </li>
-<li><a href="#how">如何建立一个多元线性回归模型</a></li>
-</ul>
-<h4 id="多元线性回归再解释"><a href="#多元线性回归再解释" class="headerlink" title="多元线性回归再解释"></a><a name="what">多元线性回归再解释</a></h4><p><img src="https://ws1.sinaimg.cn/large/88370061ly1g13ucauwvfj20ti05fjte.jpg" alt="多元线性回归"></p>
-<p>上图中，研发经费(R&amp;D Spend)、管理费用(Administration)、市场开销(Marketing Spend)和所在城市(State)都是自变量，都影响着最终的利润(Profile)。这种有数个自变量和因变量的情况不能再使用简单线性回归模型进行拟合，需要使用新的模型:多元线性回归模型(Multiple Linear Regression)进行拟合。多元线性回归模型类似于: Y = b = b<sub>0</sub> + b<sub>1</sub>X<sub>1</sub> + b<sub>2</sub>X<sub>2</sub> + … + b<sub>n</sub>X<sub>n</sub> 。拟合的过程主要是通过不同组的自变量矩阵([X<sub>1</sub>  &nbsp;X<sub>2</sub> &nbsp; … &nbsp; X<sub>n</sub>])和 变量结果Y 来寻找最佳的 b矩阵([b<sub>0</sub> &nbsp; b<sub>1</sub> &nbsp; b<sub>2</sub> … &nbsp; b<sub>n</sub>])。</p>
-<h4 id="应用多元线性回归的五个前提"><a href="#应用多元线性回归的五个前提" class="headerlink" title="应用多元线性回归的五个前提"></a><a name="five">应用多元线性回归的五个前提</a></h4><ol>
-<li>线性数据(Linearity)</li>
-<li>同方差性(Homoscedasticity)</li>
-<li>多元正态分布(Multivariate normality)</li>
-<li>误差成立(Independence of error)</li>
-<li>无多重共线性(Lack of Multicolinearity): 这点要求是 所有的自变量相互之间无线性关系。</li>
-</ol>
-<h4 id="多元线性回归中的分类数据处理"><a href="#多元线性回归中的分类数据处理" class="headerlink" title="多元线性回归中的分类数据处理"></a><a name="dummp">多元线性回归中的分类数据处理</a></h4><p>在多元线性回归中，对分类数据采用虚拟变量(dummy)的方法处理。</p>
-<p>但是在多元线性回归中，虚拟变量处理分类数据有一个陷阱。假设有数据:   </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Salary</th>
-<th style="text-align:center">City</th>
-<th style="text-align:center">Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1000</td>
-<td style="text-align:center">New York</td>
-<td style="text-align:center">True</td>
-</tr>
-<tr>
-<td style="text-align:center">500</td>
-<td style="text-align:center">HK</td>
-<td style="text-align:center">False</td>
-</tr>
-</tbody>
-</table>
-<p>对于分类变量<strong>City</strong>,一般使用虚拟变量编码。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">New York</th>
-<th style="text-align:center">HK</th>
-<th style="text-align:center">Encode</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">New York</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1 0</td>
-</tr>
-<tr>
-<td style="text-align:center">HK</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0 1</td>
-</tr>
-</tbody>
-</table>
-<p>如表所示，<strong>New York</strong>被编码成 <b>1 0</b>.而<b>HK</b>被编码成<strong>0 1</strong>.按照这种编码方式,每个城市都会有唯一的编码。这本来没有什么问题，但是<strong>0</strong>和<strong>1</strong> 明显有相关性：只要某一个位置为1，则其他位一定是0.  如果有三个分类呢？</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">New York</th>
-<th style="text-align:center">HK</th>
-<th style="text-align:center">JP</th>
-<th style="text-align:center">Encode</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">New York</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">100</td>
-</tr>
-<tr>
-<td style="text-align:center">HK</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">010</td>
-</tr>
-<tr>
-<td style="text-align:center">JP</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">001</td>
-</tr>
-</tbody>
-</table>
-<p>如果是三个分类，那么显然知道其中两个的值，就一定能知道第三个位置的值是<strong>0</strong>还是<strong>1</strong>.</p>
-<p><b>为了满足应用线性回归的五个前提的无多重共线性，当分类变量有N个维度，要省略一个维度来避免维度溢出。</b>  </p>
-<p>另外，值得注意的是：多元线性回归的模型类似于<strong>Y = b<sub>0</sub> + b<sub>1</sub><em>X<sub>1</sub> + … + b<sub>n</sub></em>X<sub>n</sub></strong> . 多组自变量 [x1, x2, .. , xn]构成的自变量矩阵只能得到[b1, b2, … , bn].为了得到 <strong>b0</strong>.只能假设 X<sub>0</sub> 为常数1.构成新的自变量矩阵[1, x1, x2, …, xn].这样处理之后就能够拟合出b0的值。</p>
-<h4 id="如何建立一个多元线性回归模型"><a href="#如何建立一个多元线性回归模型" class="headerlink" title="如何建立一个多元线性回归模型"></a><a name="how">如何建立一个多元线性回归模型</a></h4><blockquote>
-<p>建立一个多元线性回归模型有五种方式，下面来介绍每一个线性回归模型。  </p>
-</blockquote>
-<ol>
-<li><p>All in </p>
-<p>All in 就是保留所有的自变量来拟合回归模型，但是一般很少用这种拟合方式。除非某种特殊场合不得不使用，或者用于 <b>Backward Elimation</b>的准备工作。</p>
-<p><img src="https://ws1.sinaimg.cn/large/88370061ly1g1635wmqzuj20ud0a6abb.jpg" alt=""></p>
-</li>
-<li><p>Backward Elimation(反向淘汰)</p>
-<p><img src="https://ws1.sinaimg.cn/large/88370061gy1g1647cswm0j21hc0qt41k.jpg" alt=""></p>
-<p>反向淘汰是逐步回归的一种方式。首先将所有的自变量以<strong>All in</strong>的方式加在模型中，定义一个门槛值(SL=0.05)。然后计算出每一个元素的P-value。找出最大P-value的元素，如果这个元素的P-value &gt; SL.那么就删除掉这个元素，再回到找最大P-value的元素的步骤。指导最大的P-value &lt; SL.此时，这个多元线性回归模型就拟合好了。</p>
-<p>关于P-value: P-value是统计学中自变量对因变量影响程度的量，P-value越大，表示这个值对因变量的影响越小。  </p>
-<p>所以，反向淘汰可以这么理解：首先将所有的自变量加入到模型中，在通过P-value寻找出所有对结果影响较小的元素并删除，以此来提高回归预测模型对数据预测的准确性。</p>
-</li>
-<li><p>Forward Selection(正向选择)</p>
-<p>​    Step1: select a significance level to enter the model(SL=0.05).  </p>
-<p>​    Step2: Fit all simple regression models y-Xn.Select the one with the lowest p-value.  </p>
-<p>​    Step3: Keep this variable and fit all possiable models with one extra predictor aded to the  one you have.  </p>
-<p>​    Step4: Consider the predictor with the latest p-value.If P &lt; SL, go  to Step3. Otherwise go to FIN.</p>
-</li>
-<li><p>Bidirection Elimination  (双向淘汰)</p>
-<p>​    Step1: Select a significance level to enter and to stay in the model.(SLENTER = 0.05, SLSTAY = 0.05).  </p>
-<p>​    Step2: Perform the next step of Forward Selection.(new Value must have: P&lt;SLENTER to enter)</p>
-<p>​    Step3: Perform All Step of Backward Elimination(old value must P &lt; SLSTAY)</p>
-<p>​    Step4: No new variable can enter and no old variable can exit.</p>
-</li>
-<li><p>Score Comparison(信息量比较)  </p>
-<p>​    Step1: 选择一个打分方式</p>
-<p>​    Setp2: 对所有可能模型进行打分。1-N个数有2^N - 1个模型  </p>
-<p>​    Step3: 选择打分最高的模型。</p>
-</li>
-</ol>
 
       
 
@@ -320,11 +186,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Vue.js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Web开发</a>
         		</li>
       		
 		</ul>
@@ -380,7 +250,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://btainleer.github.io/2019/03/07/机器学习-003-之多元线性回归/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://btainleer.github.io/2019/04/03/Laravel-Vue-js的新开发思维/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -394,18 +264,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/04/03/Laravel-Vue-js的新开发思维/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Laravel+Vue.js的新开发思维
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/05/机器学习-002-之简单线性回归/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">机器学习(002)之简单线性回归</div>
+    <a href="/2019/03/07/机器学习-003-之多元线性回归/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习(003)之多元线性回归</div>
       <i class="icon-circle-right"></i>
     </a>
   
