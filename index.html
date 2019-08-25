@@ -146,104 +146,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-心态爆炸之laravel中Vue-js坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/08/心态爆炸之laravel中Vue-js坑/">心态爆炸之laravel中Vue.js坑</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/08/心态爆炸之laravel中Vue-js坑/" class="archive-article-date">
-  	<time datetime="2019-04-08T03:23:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在用laravel的时候踩了一个小坑，花了整整半天才找到问题所在，坑越小，越难找。  </p>
-</blockquote>
-<h4 id="我怎么掉进坑里的"><a href="#我怎么掉进坑里的" class="headerlink" title="我怎么掉进坑里的"></a>我怎么掉进坑里的</h4><p>Laravel的ACL设计的很简洁，其他RBAC通常需要[用户组表-权限表-用户组权限关联表]这样的数据库逻辑才能完成。Laravel中直接在运行时用变量控制权限。为了前后端都有ACL，我就打算用VUE也实现一个。</p>
-<p>首先定义一个 权限类 Gate.js:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Gate</span></span>&#123;</span><br><span class="line">	construcrot(user) &#123;</span><br><span class="line">		<span class="keyword">this</span>.user = user;</span><br><span class="line">	&#125;	</span><br><span class="line"></span><br><span class="line">	isAdmin() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.usesr.type === <span class="string">'admin'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后在主控制文件app.js中把这个权限注册成全局变量：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Gate <span class="keyword">from</span> <span class="string">'./Gate'</span></span><br><span class="line">Vue.prototype.$gate = <span class="keyword">new</span> Gate(<span class="built_in">window</span>.user)</span><br></pre></td></tr></table></figure>
-<p>然后在布局模板文件中 xxx.blade.php:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;js/app.js&gt;&lt;/script&gt;</span><br><span class="line">@auth</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	window.user = @json(auth()-&gt;user())</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">@endauth</span><br></pre></td></tr></table></figure>
-<p>这样之后，我就在Vue文件中这样用了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-if=&quot;$gate.isAdmin()&quot;&gt;</span><br><span class="line">  Something only for Admin</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div v-if=&quot;!$gate.isAdmin()&quot;&gt;</span><br><span class="line">  Not Found Page</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>然后运行就报错了。</p>
-<h4 id="开始排错"><a href="#开始排错" class="headerlink" title="开始排错"></a>开始排错</h4><p>在控制台输入 <strong>window.user</strong> 是有输出的，那么 <strong>Vue.prototype.$gate</strong> 注册不应该有错，但是调用<strong>gate.isAdmim()</strong>提示<font color="red">$gate is not defined.</font>  </p>
-<p>在控制台new Gate()也没有问题，那么导入也没问题，但是问题一直存在。</p>
-<h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/app.js“&gt;&lt;/script&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">@auth</span></span></span><br><span class="line"><span class="tag"><span class="string">&lt;script&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">	window.user = @json(auth()-&gt;user())</span></span></span><br><span class="line"><span class="tag"><span class="string">&lt;/script&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">@endauth</span></span></span><br></pre></td></tr></table></figure>
-<p>  问题就出在上面的代码上，当先载入app.js会先运行 <strong>Vue.prototype.$gate = new Gate(window.user)</strong>,而此时window.user变量并未被赋值，所以就出现了 <font color="red"> ​$gate is not defined</font> . 结束之后才会运行 <strong>window.user = @json(auth()-&gt;user())</strong>.这就是后来在控制台才会有输出,但是依旧报错的原因。</p>
-<h4 id="躲过的坑"><a href="#躲过的坑" class="headerlink" title="躲过的坑"></a>躲过的坑</h4><p>在app.js中:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import Gate from &apos;./Gate&apos;</span><br><span class="line">Vue.prototypr.$gate = new Gate(window.user)</span><br><span class="line"></span><br><span class="line">let route = [</span><br><span class="line">  &#123;xxxxxx&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">const app = new Vue(&#123;</span><br><span class="line">  route</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这里的<strong>Vue.prototype.$gate = new Gate(window.user)</strong>一定要在用路由实例化类前面，否则依旧 <font color="red">$gate is undefined</font>.</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>仔细想想，这仅仅是 违背了 <font size="14px" color="red">先赋值，再调用</font>这么简单的原则。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Laravel</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/08/心态爆炸之laravel中Vue-js坑/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-机器学习-003-之多元线性回归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1425,7 +1327,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1437,23 +1343,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Colleaction</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Iterator</a>
+                <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1469,11 +1359,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Laravel</a>
+                <a href="javascript:void(0)" class="js-tag color2">Colleaction</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Iterator</a>
               </li>
              
               <li class="article-tag-list-item">
